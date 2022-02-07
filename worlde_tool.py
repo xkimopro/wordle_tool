@@ -17,24 +17,24 @@ with open(dictionary_file) as df:
                 statistics.sampleFiveLetterScores(20, heterogram=True)
                 continue
             
-            char, pos = getCharPos(command)
+            if 'Gray' in command and not 'Gray2' in command:
+                char = insideParentheses(command)
+                statistics.removeLetter(char)
+                continue
             
-
-
-            if 'Green' in command:
-                statistics.correctLetterCorrectPosition(char,pos)
+            else:
+                char, pos = getCharPos(command)
                 
-            if 'Yellow' in command:
-                statistics.correctLetterWrongPosition(char,pos)
-
-            if 'Gray' in command:
+                if 'Green' in command:
+                    statistics.correctLetterCorrectPosition(char,pos)
+                    
+                if 'Yellow' in command:
+                    statistics.correctLetterWrongPosition(char,pos)
+                
                 if 'Gray2' in command:
                     statistics.secondLetterNotInPosition(char,pos)
-                else:
-                    char = insideParentheses(command)
-                    statistics.removeLetter(char)
-
-           
+            
+              
             if input_line[-1] == ';': statistics.sampleFiveLetterScores(20, heterogram=True)
 
 

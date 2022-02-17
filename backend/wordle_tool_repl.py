@@ -33,39 +33,5 @@ with open(dictionary_file) as df:
                 
                 if 'Gray2' in command:
                     statistics.secondLetterNotInPosition(char,pos)
-            
-              
+        
             if input_line[-1] == ';': statistics.sampleFiveLetterScores(20, heterogram=True)
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-    # statistics.removeLetter('H')
-    # statistics.correctLetterCorrectPosition('T', 4)
-    # statistics.correctLetterWrongPosition('I', 1)
-    
-    
-    # statistics.removeLetter('F')
-    # statistics.removeLetter('L')
-    # statistics.removeLetter('N')
-
-    # statistics.correctLetterCorrectPosition('I', 2)
-    # statistics.sampleFiveLetterWords(100)
-
-
-
-

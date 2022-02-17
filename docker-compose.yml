@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+  wordle_tool:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: wordle_tool_container
+    restart: always
+    ports:
+      - "3000:3000"
+   

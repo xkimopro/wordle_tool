@@ -1,7 +1,7 @@
 
 import string, random, functools
 from collections import OrderedDict,Counter
-
+from functions import *
 
 def isHeterogram(word):
     letter_counter = Counter(list(word))
@@ -20,18 +20,16 @@ def updateScoresDecorator(func):
 
 
 class Game:
-
-
-    @updateScoresDecorator
-    def __init__(self, five_letter_words):
-        self.freq = {}
-        self.uppercase_letters = string.ascii_uppercase
-        self.removed_letters = []
-        self.correct_letters_correct_positions = []
-        self.correct_letters_wrong_positions = []
-        self.five_letter_words = five_letter_words
-        self.five_letter_words_scores = {}
-    
+    def __init__(self):
+        with open("words.txt") as df:
+            all_words = df.read().split()
+            self.all_words = all_words   
+            self.five_letter_words = all_words
+            self.freq,self.five_letter_words_scores = {},{}
+            self.uppercase_letters = string.ascii_uppercase
+            self.correct_letters_wrong_positions, self.correct_letters_correct_positions, self.removed_letters = [],[],[]
+            self.updateScores()
+        
 
     @updateScoresDecorator
     def removeLetter(self, letter):
@@ -93,13 +91,17 @@ class Game:
 
     def sampleFiveLetterScores(self, n, heterogram):
         times = 0
+        words = []
         for word, score in self.five_letter_words_scores.items():
             if n == times: break
             if not isHeterogram(word) and heterogram: continue
             print(word + " " + str(score))
+            words.append(word)
             times+=1
-        
         print()
+        return words
+        
 
     def testingFunction(self,):
         print("Test")
+        return "Test"

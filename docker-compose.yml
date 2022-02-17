@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
     container_name: wordle_tool_container
     restart: always
+    volumes:
+      - './backend:/opt/wordle_tool_app/' 
     ports:
-      - "3000:3000"
+      - "5000:5000"
    

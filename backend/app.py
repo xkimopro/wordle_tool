@@ -1,33 +1,39 @@
 from flask import Flask, request
-from app_service import AppService
+from game_service import GameService
 import json
 
 app = Flask(__name__)
-appService = AppService()
 
+game_service = GameService()
+    
 
 @app.route('/')
 def home():
-    return "App Works!!!"
+    return "Welcome To a Wordle Helper Api"
 
 
-@app.route('/api/tasks')
-def tasks():
-    return appService.get_tasks()
+@app.route('/api/words')
+def getWordsRoute():
+    return game_service.getAllWords()
 
-@app.route('/api/task', methods=['POST'])
-def create_task():
+@app.route('/api/active_words')
+def getActiveWordsRoute():
+    return game_service.getActiveWords()
+
+
+@app.route('/api/move', methods=['POST'])
+def doMoveRoute():
     request_data = request.get_json()
-    task = request_data['task']
-    return appService.create_task(task)
+    res = game_service.doMove(request_data)
+    return json.dumps(res)
 
 
-@app.route('/api/task', methods=['PUT'])
-def update_task():
-    request_data = request.get_json()
-    return appService.update_task(request_data['task'])
+@app.route('/api/restart', methods=['POST'])
+def doRestartRoute():
+    res = game_service.restartGame()
+    return json.dumps(res)
 
-
-@app.route('/api/task/<int:id>', methods=['DELETE'])
-def delete_task(id):
-    return appService.delete_task(id)
+@app.route('/api/words_rated/<n>')
+def getWordsRatedRoute(n):
+    res = game_service.getWordsRated(100)
+    return json.dumps(res)

@@ -1,14 +1,14 @@
 version: "2"
 
 services:
-  wordle_tool:
+  backend_service:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: wordle_tool_container
+    container_name: backend_container
     restart: always
     volumes:
-      - './backend:/opt/wordle_tool_app/' 
+      - './:/opt/wordle_tool_backend/' 
     ports:
       - "5000:5000"
    

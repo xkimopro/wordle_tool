@@ -6,8 +6,8 @@ RUN apt-get update && apt-get install -y \
 
 
 # Copy HOST backend to CONTAINER /opt/wordle_tool_app 
-WORKDIR /opt/wordle_tool_app
-COPY ./backend .
+WORKDIR /opt/wordle_tool_backend
+COPY ./ .
 
 RUN pip install --no-cache-dir -r requirements.txt
 
